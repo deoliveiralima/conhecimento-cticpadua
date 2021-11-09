@@ -3,8 +3,12 @@
 @section('conteudo')
   
         <div class="col-6 form-url">
-            <form method="POST" action="{{isset($link->id) ? '/link/'.$link->id : '/link/create'}}">
+            <form method="POST" action="{{isset($link->id) ? '/link/'.$link->id : '/link'}}">
                 @csrf
+                
+                @if (isset($link->id))
+                    @method('PUT')
+                @endif
 
                 <div class="mb-3">
                     <label for="nome" class="form-label" >Nome</label>

@@ -88,6 +88,17 @@ class LinkController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nome' => 'required',
+            'url' => 'required'
+        ]);
+
+        $link = Link::find($id);
+        $link->nome = $request->nome;
+        $link->url = $request->url;
+        $link->save();
+        return redirect()->route('links');
+
         //
     }
 
@@ -99,7 +110,8 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        Link::delete($id);
+        $link = Link::find($id);
+        $link->delete();
 
         return redirect()->route('links'); 
         //

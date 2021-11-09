@@ -24,3 +24,5 @@ Route::get('/link/create', 'LinkController@create')->name('link.create');
 Route::post('/link', 'LinkController@store');
 
  Route::get('/link/{link}/edit', 'LinkController@edit');
+ Route::put('/link/{link}', 'LinkController@update');
+ Route::get('/link/{link}/delete', 'LinkController@destroy');
