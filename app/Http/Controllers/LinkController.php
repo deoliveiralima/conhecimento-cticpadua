@@ -13,6 +13,9 @@ class LinkController extends Controller
      */
     public function index()
     {
+        $links = Link::all();
+    
+        return view("link.list", ["links"=>$links]);
         //
     }
 
@@ -23,7 +26,8 @@ class LinkController extends Controller
      */
     public function create()
     {
-       return view('link.create');
+        $link = new Link();
+       return view("link.create", ["link"=>$link]);
 
         //
     }
@@ -43,7 +47,7 @@ class LinkController extends Controller
 
         Link::create($request->all());
 
-       //return redirect()->route('products.index')->with('success', 'Product created successfully.');
+       return redirect()->route('links');
 
 
         //
@@ -68,6 +72,10 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
+        $link = Link::find($id);
+
+        return view("link.create", ["link"=>$link]);
+        return redirect()->route('links');
         //
     }
 
@@ -91,6 +99,9 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
+        Link::delete($id);
+
+        return redirect()->route('links'); 
         //
     }
 }

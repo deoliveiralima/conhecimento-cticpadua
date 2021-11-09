@@ -17,7 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/link', 'LinkController@create');
+Route::get('/link', 'LinkController@index')->name('links');
+
+Route::get('/link/create', 'LinkController@create')->name('link.create');
 
 Route::post('/link', 'LinkController@store');
 
+ Route::get('/link/{link}/edit', 'LinkController@edit');

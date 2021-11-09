@@ -1,4 +1,5 @@
 @extends('layout')
+
 @section('conteudo')
   
         <div class="col-6 form-url">
@@ -18,4 +19,4 @@
             </form>
         </div>
 
-@stop
+@endsection
