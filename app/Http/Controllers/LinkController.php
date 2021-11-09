@@ -30,7 +30,7 @@ class LinkController extends Controller
        return view("link.create", ["link"=>$link]);
 
         //
-    }
+    } 
  
     /**
      * Store a newly created resource in storage.
