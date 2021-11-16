@@ -75,7 +75,7 @@ class LinkController extends Controller
         $link = Link::find($id);
 
         return view("link.create", ["link"=>$link]);
-        return redirect()->route('links');
+       
         //
     }
 

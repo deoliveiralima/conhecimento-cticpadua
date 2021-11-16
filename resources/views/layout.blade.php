@@ -33,11 +33,13 @@
 
           <div class="col-9 border border-primary ">
               @yield('conteudo')
+            
         </div>
      
       </div>
     </div>
     
-     
+
+   
 </body>
 </html>
