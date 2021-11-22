@@ -1,0 +1,11 @@
+.form-url{
+    margin: 10% 0 0 25%;
+
+}
+.btn {
+    border-radius: 0;
+}
+.add-link{
+    float: right;
+}
+.icon{ color: inherit; } 
