@@ -10,6 +10,7 @@ class TipoTarefa extends Model
 
     public function RegistroTarefa()
     {
-        return $this->belongsTo('App\RegistroTarefa');
+        return $this->hasMany('App\RegistroTarefa');
+
     }
 }

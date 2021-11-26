@@ -16,8 +16,6 @@ class TipoTarefas extends Migration
          Schema::create('tipo_tarefas', function (Blueprint $table) {
             $table->id();
             $table->string('nome')->nullable(false);
-            $table->unsignedBigInteger('registro_tarefa_id');
-            $table->foreign('registro_tarefa_id')->references('id')->on('registro_tarefas');
             $table->timestamps(); 
         });
         //

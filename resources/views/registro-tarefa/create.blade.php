@@ -10,24 +10,15 @@
                     @method('PUT')
                 @endif
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="tipo" id="tipo1" value="">
-                    <label class="form-check-label" for="tipo1">
-                     Movimentação de material
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="tipo" id="tipo2">
-                    <label class="form-check-label" for="tipo2">
-                      PFsense
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="tipo" id="tipo3">
-                    <label class="form-check-label" for="tipo3">
-                      Manuteção
-                    </label>
-                  </div>
+                <label for="tipo_tarefas" class="form-label" >Tipo Tarefa </label>
+                <select name="tipo_tarefas" id="tipo_tarefas" class="form-select" aria-label="Default select example">
+                  @foreach
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+
+                
 
                 <div class="mb-3">
                     <label for="tipo" class="form-label" >Descrição</label>

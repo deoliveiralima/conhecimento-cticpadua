@@ -28,10 +28,12 @@ class RegistroTarefaController extends Controller
     public function create()
     {
        
-        $registroTarefa = App\TipoTarefa::has('tipotarefas')->get();
-        dd($registroTarefa);
-       // return view("registro-tarefa.create", ["registroTarefa"=>$registroTarefa]);
-        //
+        $tipoTarefa = TipoTarefa::all();
+        $registroTarefa = new RegistroTarefa();
+        
+        
+       return view("registro-tarefa.create", ["tipoTarefa"=>$tipoTarefa, 'registroTarefa' => $registroTarefa]);
+    
     }
 
     /**
