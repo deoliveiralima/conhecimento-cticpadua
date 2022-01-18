@@ -39,18 +39,27 @@ class LinkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    
     {
+
+        
         $request->validate([
             'nome' => 'required',
             'url' => 'required'
         ]);
 
-        Link::create($request->all());
+        //Link::create($request->all());
+        $link = new Link;
+        $link->nome = $request->nome;
+        $link->url = $request->url;
+        $link->save();
 
-       return redirect()->route('links');
+        return $link;
+
+       //return redirect()->route('links');
 
 
-        //
+        
     }
 
     /**
@@ -61,6 +70,9 @@ class LinkController extends Controller
      */
     public function show($id)
     {
+        $link = Link::find($id);
+        return $link;
+    
         //
     }
 
@@ -74,7 +86,7 @@ class LinkController extends Controller
     {
         $link = Link::find($id);
 
-        return view("link.create", ["link"=>$link]);
+        return $link;
        
         //
     }
@@ -97,7 +109,7 @@ class LinkController extends Controller
         $link->nome = $request->nome;
         $link->url = $request->url;
         $link->save();
-        return redirect()->route('links');
+        return $link;
 
         //
     }
@@ -111,9 +123,29 @@ class LinkController extends Controller
     public function destroy($id)
     {
         $link = Link::find($id);
-        $link->delete();
+        
 
-        return redirect()->route('links'); 
+        return $link->delete(); 
         //
     }
+
+    public function linksJson(){
+
+       // $links = '{"link_nome":"Google", "link_url":"www.google.com"}';
+
+        //$links = ['{nome_link: google, url_link: www.google.com }', '{nome_link: bing, url_link: www.bing.com }', '{nome_link: facebook, url_link: www.facebook.com }'];
+        
+        $links = '{
+            "links":[
+                {"nome_link": "google", "url_link": "www.google.com" }, 
+                {"nome_link": "bing", "url_link": "www.bing.com" },
+                {"nome_link": "facebook", "url_link": "www.facebook.com" }
+
+                ] 
+            }';
+          $links = Link::all();
+
+            return $links;  
+    }
 }
+ 

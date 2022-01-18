@@ -7,8 +7,12 @@ use App\Tutorial;
 class TutorialController extends Controller
 {
     public function index(){
+        
+    }
+
+    public function list(){
         $tutoriais = Tutorial::all();
-        return view("tutorial.index", ["tutoriais"=>$tutoriais]);
+        return $tutoriais;
     }
     public function create(){
         $tutorial = new Tutorial();
@@ -17,33 +21,45 @@ class TutorialController extends Controller
     }
 
     public function store(Request $request){
-        $tutorial = Tutorial::create($request->all());
+
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required'
+        ]);
+        $tutorial = new Tutorial();
+        $tutorial->titulo = $request->title;
+        $tutorial->texto = $request->text; 
         
         
         $tutorial->save();
 
-        return  redirect()->route('tutorial');
+        return $tutorial;
 
     }
     public function show($id){
         $tutorial = Tutorial::find($id);
-        return view("tutorial.show", ["tutorial"=>$tutorial]);
+        return $tutorial;
     }
     public function edit ($id){
         $tutorial = Tutorial::find($id);
-        return view("tutorial.create", ["tutorial"=>$tutorial]);
+        return $tutorial;
     }
     public function update (Request $request, $id){
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required'
+        ]);
+
         $tutorial = Tutorial::find($id);
-        $tutorial->titulo = $request->titulo;
-        $tutorial->texto = $request->texto;
+        $tutorial->titulo = $request->title;
+        $tutorial->texto = $request->text;
         $tutorial->save();
-        return  redirect()->route('tutorial');
+        return  $tutorial;
     }
     public function destroy ($id){
         $tutorial = Tutorial::find($id);
-       $tutorial->delete();
-        return  redirect()->route('tutorial');
+        return ($tutorial->delete());
+         
     }
     //
 } 

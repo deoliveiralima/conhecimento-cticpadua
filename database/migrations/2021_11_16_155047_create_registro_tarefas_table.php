@@ -15,7 +15,6 @@ class CreateRegistroTarefasTable extends Migration
     {
         Schema::create('registro_tarefas', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo')->nullable(false);
             $table->string('descricao')->nullable(false);
             $table->string('motivo');
             $table->timestamps(); 

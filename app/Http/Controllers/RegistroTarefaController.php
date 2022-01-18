@@ -15,8 +15,11 @@ class RegistroTarefaController extends Controller
      */
     public function index()
     {
+        $registros = TipoTarefa::has('registroTarefa')->first();
+       
+       
 
-        return view('registro-tarefa.list');
+        return view('registro-tarefa.list', ['registroTarefa' => $registros]);
         //
     }
 
@@ -28,11 +31,11 @@ class RegistroTarefaController extends Controller
     public function create()
     {
        
-        $tipoTarefa = TipoTarefa::all();
+        $tiposTarefa = TipoTarefa::all();
         $registroTarefa = new RegistroTarefa();
         
         
-       return view("registro-tarefa.create", ["tipoTarefa"=>$tipoTarefa, 'registroTarefa' => $registroTarefa]);
+       return view("registro-tarefa.create", ["tiposTarefa"=>$tiposTarefa, 'registroTarefa' => $registroTarefa]);
     
     }
 
@@ -44,16 +47,29 @@ class RegistroTarefaController extends Controller
      */
     public function store(Request $request)
     {
+        $mensagens = [
+            'required' => 'O Campo :attribute é obrigatório!',
+       
+        ];
+        
         $request->validate([
-            'tipo' => 'required',
             'descricao' => 'required',
-        ]);
+            'motivo' => 'required',
+            'tipo_tarefa' => 'required',
 
-        $tarefa = $request->all();
+        ], $mensagens);
+        
+        $registroTarefa = new RegistroTarefa();
 
-        $tarefa->save();
+        $registroTarefa->descricao = $request->descricao;
+        $registroTarefa->motivo = $request->motivo;
+       // $registroTarefa->tipotarefa = $request->tipo_tarefa;
 
-        return redirect('/registro-tarefas');
+        $tipoTarefa = TipoTarefa::find($request->tipo_tarefa);
+        $tipoTarefa->registroTarefa()->save($registroTarefa);
+
+        
+       return redirect('/registro-tarefa/create');
         //
     }
 

@@ -8,7 +8,7 @@ class TipoTarefa extends Model
 {
     protected $fillable = ['nome'];
 
-    public function RegistroTarefa()
+    public function registroTarefa()
     {
         return $this->hasMany('App\RegistroTarefa');
 

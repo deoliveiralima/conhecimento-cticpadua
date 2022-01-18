@@ -8,7 +8,7 @@ class RegistroTarefa extends Model
 {
     protected $fillable = ['tipo', 'descricao'];
     
-    public function tipotarefas(){
+    public function tipoTarefa(){
         return $this->belongsTo('App\TipoTarefa');
     }
 }

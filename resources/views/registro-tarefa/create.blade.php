@@ -3,7 +3,7 @@
 @section('conteudo')
   
         <div class="col-6 form-url">
-            <form method="POST" action="{{isset($registroTarefa->id) ? '/link/'.$registroTarefa->id : '/link'}}">
+            <form method="POST" action="{{isset($registroTarefa->id) ? '/registro-tarefa/'.$registroTarefa->id : '/registro-tarefa'}}">
                 @csrf
                 
                 @if (isset($registroTarefa->id))
@@ -11,26 +11,32 @@
                 @endif
 
                 <label for="tipo_tarefas" class="form-label" >Tipo Tarefa </label>
-                <select name="tipo_tarefas" id="tipo_tarefas" class="form-select" aria-label="Default select example">
-                  @foreach
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select name="tipo_tarefa" id="tipo_tarefa"  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    @foreach ($tiposTarefa as $tipoTarefa)
+                    <option value="{{$tipoTarefa->id}}">{{$tipoTarefa->nome}}</option>  
+                    @endforeach
                 </select>
 
                 
 
                 <div class="mb-3">
                     <label for="tipo" class="form-label" >Descrição</label>
-                    <input type="text" class="form-control" id="tipo" name="tipo" value="{{$registroTarefa->descricao}}">
+                    <input type="text" class="form-control" id="descricao" name="descricao" value="{{$registroTarefa->descricao}}" >
                 </div>
+                @error('descricao')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="mb-3">
                     <label for="url" class="form-label">Motivo</label>
-                    <input type="text" class="form-control"  id="nome" name="url"  value="{{$registroTarefa->motivo}}">
+                    <input type="text" class="form-control"  id="motivo" name="motivo"  value="{{$registroTarefa->motivo}}" >
                 </div>
+                @error('motivo')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
+
         </div>
 
 @endsection

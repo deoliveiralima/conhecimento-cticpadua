@@ -43,9 +43,11 @@ Route::post('/tutorial', 'TutorialController@store')->name('tutorial.store');
  Route::get('/registro-tarefa', 'RegistroTarefaController@index')->name('registro-tarefa');
 
  Route::get('/registro-tarefa/create', 'RegistroTarefaController@create')->name('registro-tarefa.create');
- Route::get('/registro-tarefa/{id}', 'RegistroTarefaController@show')->name('registro-tarefa.show');
  Route::post('/registro-tarefa', 'RegistroTarefaController@store')->name('registro-tarefa.store');
+
+ //apis
+
  
-  Route::get('/registro-tarefa/{id}/edit', 'RegistroTarefaController@edit')->name('registro-tarefa.edit');
-  Route::put('/registro-tarefa/{id}', 'RegistroTarefaController@update')->name('registro-tarefa.update');
-  Route::get('/registro-tarefa/{id}/delete', 'RegistroTarefaController@destroy')->name('registro-tarefa.destroy');
+
+
+ 
