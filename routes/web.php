@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/link', 'LinkController@index')->name('links');
 
 Route::get('/link/create', 'LinkController@create')->name('link.create');
@@ -51,3 +53,6 @@ Route::post('/tutorial', 'TutorialController@store')->name('tutorial.store');
 
 
  
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

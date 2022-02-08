@@ -7,11 +7,16 @@ use App\Tutorial;
 class TutorialController extends Controller
 {
     public function index(){
+        $tutoriais = Tutorial::paginate(5);
+       
+        
+        return view('tutorial.list', ['tutoriais'=> $tutoriais]);
         
     }
 
     public function list(){
-        $tutoriais = Tutorial::all();
+        $tutoriais = Tutorial::paginate(5);
+       
         return $tutoriais;
     }
     public function create(){

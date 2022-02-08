@@ -19,19 +19,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     
 });
 
-Route::get('/link', 'LinkController@linksJson');
-Route::get('/link/{id}', 'LinkController@edit');
-Route::post('/link', 'LinkController@store');
-Route::put('/link/{id}', 'LinkController@update');
-Route::delete('/link/{id}', 'LinkController@destroy');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/link', 'LinkController@linksJson');
+    Route::get('/link/{id}', 'LinkController@edit');
+    Route::post('/link', 'LinkController@store');
+    Route::put('/link/{id}', 'LinkController@update');
+    Route::delete('/link/{id}', 'LinkController@destroy');
 
-//tutoriais
+    //tutoriais
+    Route::get('/tutorial', 'TutorialController@list');
+    Route::get('/tutorial/{id}', 'TutorialController@edit');
+    Route::post('/tutorial', 'TutorialController@store');
+    Route::put('/tutorial/{id}', 'TutorialController@update');
+    Route::delete('/tutorial/{id}', 'TutorialController@destroy');
+    
+});
 
-Route::get('/tutorial', 'TutorialController@list');
-Route::get('/tutorial/{id}', 'TutorialController@edit');
-Route::post('/tutorial', 'TutorialController@store');
-Route::put('/tutorial/{id}', 'TutorialController@update');
-Route::delete('/tutorial/{id}', 'TutorialController@destroy');
 
+
+
+Route::post('/login', 'AuthController@login');
 
  
